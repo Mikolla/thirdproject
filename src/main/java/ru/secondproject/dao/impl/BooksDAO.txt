@@ -1,0 +1,87 @@
+package ru.secondproject.dao.impl;
+
+
+
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
+
+/**
+ * @author v.chibrikov
+ *         <p>
+ *         Пример кода для курса на https://stepic.org/
+ *         <p>
+ *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
+ */
+public class BooksDAO {
+
+    private Session session;
+
+    public BooksDAO(Session session) {
+        this.session = session;
+    }
+
+    public BookDataSet get(long id) throws HibernateException {
+        return (BookDataSet) session.get(BookDataSet.class, id);
+    }
+
+    public List<BookDataSet> HQLgetAllBooksByIdMoreThan(long id) throws HibernateException {
+        String hql = "FROM BookDataSet where id > :paramName";
+        Query query = session.createQuery(hql);
+        query.setParameter("paramName", id);
+        List<BookDataSet> books = query.list();
+        return books;
+    }
+
+
+    public List<BookDataSet> HQLgetAllBooksByAuthor(String author) throws HibernateException {
+        String hql = "FROM BookDataSet where author = :paramName";
+        Query query = session.createQuery(hql);
+      query.setParameter("paramName", author);
+        List<BookDataSet> books = query.list();
+        return books;
+    }
+
+    public List<BookDataSet> HQLgetAllBooks() throws HibernateException {
+        Query query = session.createQuery("FROM BookDataSet");
+        List<BookDataSet> books = query.list();
+        return books;
+    }
+
+
+    public long insertBook(String name) throws HibernateException {
+        return (Long) session.save(new BookDataSet(name));
+    }
+
+    public long insertBookLong(String name, String author, int year) throws HibernateException {
+        return (Long) session.save(new BookDataSet(name, author, year));
+    }
+
+    public List<BookDataSet> readAllBooks() {
+        Criteria criteria = session.createCriteria(BookDataSet.class);
+        return (List<BookDataSet>) criteria.list();
+    }
+
+
+
+    public String getBookAuthor(String title) throws HibernateException {
+        Criteria criteria = session.createCriteria(BookDataSet.class);
+        return ((BookDataSet) criteria
+                                      .add(Restrictions.eq("name", title))
+                                      .uniqueResult())
+                                      .getAuthor();
+    }
+
+
+    public List<BookDataSet> AllBooksByAuthor(String author) {
+        Criteria criteria = session.createCriteria(BookDataSet.class);
+        return (List<BookDataSet>) criteria
+                                           .add(Restrictions.eq("author", author))
+                                           .list();
+    }
+
+}

@@ -1,5 +1,5 @@
 
-import ru.secondproject.util.SingleDBHelper;
+import ru.thirdproject.util.SingleDBHelper;
 
 /**
  * @author v.chibrikov

@@ -1,4 +1,4 @@
-package ru.secondproject.dao.impl.user;
+package ru.thirdproject.dao.impl.user;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,9 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.service.ServiceRegistry;
-import ru.secondproject.dao.abstraction.user.UserDao;
-import ru.secondproject.model.User;
-import ru.secondproject.util.SingleDBHelper;
+import ru.thirdproject.dao.abstraction.user.UserDao;
+import ru.thirdproject.model.User;
+import ru.thirdproject.util.SingleDBHelper;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -29,14 +29,14 @@ public class UserDaoImplHibernate implements UserDao {
 
     public long saveUser(User user) {
         Session session = sessionFactory.openSession();
-        long id = (Long) session.save(new User(user.getName(), user.getLogin(), user.getPassword()));
+        long id = (Long) session.save(new User(user.getName(), user.getLogin(), user.getPassword(), user.getRole()));
         session.close();
         return id;
     }
 
     public void editUser(User user) {
         Session session = sessionFactory.openSession();
-        String hqledit = "UPDATE User set name = :paramName, login = :paramLogin, password = :paramPassword where id = :paramId";
+        String hqledit = "UPDATE User set name = :paramName, login = :paramLogin, password = :paramPassword, role = :paramRole where id = :paramId";
 
         Transaction transaction = session.beginTransaction();
         try {
@@ -44,6 +44,7 @@ public class UserDaoImplHibernate implements UserDao {
             query.setParameter("paramName", user.getName());
             query.setParameter("paramLogin", user.getLogin());
             query.setParameter("paramPassword", user.getPassword());
+            query.setParameter("paramRole", user.getRole());
             query.setParameter("paramId", user.getId());
             query.executeUpdate();
             transaction.commit();

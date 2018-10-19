@@ -1,9 +1,9 @@
-package ru.secondproject.service.impl.user;
+package ru.thirdproject.service.impl.user;
 
-import ru.secondproject.dao.abstraction.user.UserDao;
-import ru.secondproject.dao.impl.user.DaoFactory;
-import ru.secondproject.model.User;
-import ru.secondproject.service.abstraction.user.UserService;
+import ru.thirdproject.dao.abstraction.user.UserDao;
+import ru.thirdproject.dao.impl.user.DaoFactory;
+import ru.thirdproject.model.User;
+import ru.thirdproject.service.abstraction.user.UserService;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {

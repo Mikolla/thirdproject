@@ -1,10 +1,10 @@
-package ru.secondproject.dao.impl.user;
+package ru.thirdproject.dao.impl.user;
 
-import ru.secondproject.dao.abstraction.user.UserDao;
-import ru.secondproject.dao.executor.Executor;
-import ru.secondproject.dao.executor.ExecutorHelper;
-import ru.secondproject.model.User;
-import ru.secondproject.util.SingleDBHelper;
+import ru.thirdproject.dao.abstraction.user.UserDao;
+import ru.thirdproject.dao.executor.Executor;
+import ru.thirdproject.dao.executor.ExecutorHelper;
+import ru.thirdproject.model.User;
+import ru.thirdproject.util.SingleDBHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,7 +29,7 @@ public class UserDaoImpljdbc implements UserDao {
     @Override
     public long saveUser(User user) {
 
-        String query = String.format("insert into users (name, login, password) values ('%s', '%s', '%s')", user.getName(), user.getLogin(), user.getPassword());
+        String query = String.format("insert into users (name, login, password, role) values ('%s', '%s', '%s', '%s')", user.getName(), user.getLogin(), user.getPassword(), user.getRole());
         long id = executor.execUpdateWithKeys(query);
         return id;
 
@@ -46,7 +46,8 @@ public class UserDaoImpljdbc implements UserDao {
                         resultSet.getLong(1),
                         resultSet.getString(3),
                         resultSet.getString(2),
-                        resultSet.getString(4));
+                        resultSet.getString(4),
+                        resultSet.getString(5));
                 return user;
             }
         });
@@ -65,7 +66,8 @@ public class UserDaoImpljdbc implements UserDao {
                             resultSet.getLong(1),
                             resultSet.getString(3),
                             resultSet.getString(2),
-                            resultSet.getString(4));
+                            resultSet.getString(4),
+                            resultSet.getString(5));
                     userList.add(user);
                 }
                 return userList;
@@ -76,8 +78,8 @@ public class UserDaoImpljdbc implements UserDao {
 
     @Override
     public void editUser(User user) {
-        String query = String.format("update users set name='%s', login='%s', password='%s' where id='%s'",
-                user.getName(), user.getLogin(), user.getPassword(), user.getId());
+        String query = String.format("update users set name='%s', login='%s', password='%s', role='%s' where id='%s'",
+                user.getName(), user.getLogin(), user.getPassword(), user.getRole(), user.getId());
         executor.execUpdate(query);
     }
 

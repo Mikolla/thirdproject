@@ -21,6 +21,9 @@
             <label for="uPassword">Password:</label>
             <input type="text" id="uPassword" name="password" placeholder="Input password" value="${user.password}"/>
 
+            <label for="uRole">Password:</label>
+            <input type="text" id="uRole" name="role" placeholder="Input role" value="${user.role}"/>
+
             <input type="submit" align="center" value="Submit"/>
 
 

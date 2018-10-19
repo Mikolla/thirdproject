@@ -1,8 +1,8 @@
-package ru.secondproject.servlet;
+package ru.thirdproject.servlet;
 
-import ru.secondproject.model.User;
-import ru.secondproject.service.abstraction.user.UserService;
-import ru.secondproject.service.impl.user.UserServiceImpl;
+import ru.thirdproject.model.User;
+import ru.thirdproject.service.abstraction.user.UserService;
+import ru.thirdproject.service.impl.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +34,8 @@ public class EditUserServlet extends HttpServlet {
         String newUserName = request.getParameter("name");
         String newUserLogin = request.getParameter("login");
         String newUserPassword = request.getParameter("password");
-        User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword);
+        String newUserRole = request.getParameter("role");
+        User newUser = new User(userIdToEdit, newUserName, newUserLogin, newUserPassword, newUserRole);
         userService.editUser(newUser);
         response.sendRedirect("/admin/allusers");
     }

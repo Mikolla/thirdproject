@@ -1,7 +1,7 @@
-package ru.secondproject.util;
+package ru.thirdproject.util;
 
 import org.hibernate.cfg.Configuration;
-import ru.secondproject.model.User;
+import ru.thirdproject.model.User;
 
 import java.sql.Connection;
 import java.sql.Driver;

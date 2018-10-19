@@ -1,4 +1,4 @@
-package ru.secondproject.util;
+package ru.thirdproject.util;
 
 
 import java.io.IOException;

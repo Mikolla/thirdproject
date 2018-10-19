@@ -1,8 +1,8 @@
-package ru.secondproject.servlet;
+package ru.thirdproject.servlet;
 
 
-import ru.secondproject.service.abstraction.user.UserService;
-import ru.secondproject.service.impl.user.UserServiceImpl;
+import ru.thirdproject.service.abstraction.user.UserService;
+import ru.thirdproject.service.impl.user.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

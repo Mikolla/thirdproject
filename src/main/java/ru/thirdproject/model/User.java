@@ -1,4 +1,4 @@
-package ru.secondproject.model;
+package ru.thirdproject.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,6 +35,9 @@ public class User implements Serializable { // Serializable Important to Hiberna
     @Column(name = "password", unique = false, updatable = true)
     private String password;
 
+    @Column(name = "role", unique = false, updatable = true)
+    private String role;
+
     //Important to Hibernate!
     @SuppressWarnings("UnusedDeclaration")
     public User() {
@@ -42,39 +45,61 @@ public class User implements Serializable { // Serializable Important to Hiberna
 
     @SuppressWarnings("UnusedDeclaration")
     public User(long id, String name) {
+        this.setRole("user");
         this.setId(id);
         this.setName(name);
     }
 
     public User(String name) {
+        this.setRole("user");
         this.setId(-1);
         this.setName(name);
     }
 
     public User(long id, String name, String password) {
+        this.setRole("user");
         this.id = id;
         this.name = name;
         this.password = password;
     }
 
     public User(String name, String password) {
+        this.setRole("user");
         this.setId(-1);
         this.name = name;
         this.password = password;
     }
 
-    public User(long id, String name, String login, String password) {
+ /*   public User(long id, String name, String login, String password) {
+        this.setRole("user");
         this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
-    }
+    } */
 
     public User(String name, String login, String password) {
+        this.setRole("user");
         this.setId(-1);
         this.name = name;
         this.login = login;
         this.password = password;
+    }
+
+    public User(long id, String name, String login, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(String name, String login, String password, String role) {
+        this.setId(-1);
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.role = role;
     }
 
     @SuppressWarnings("UnusedDeclaration")
@@ -110,6 +135,14 @@ public class User implements Serializable { // Serializable Important to Hiberna
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "UserDataSet{" +
@@ -117,6 +150,9 @@ public class User implements Serializable { // Serializable Important to Hiberna
                 ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
+
+
 }

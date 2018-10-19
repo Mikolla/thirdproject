@@ -1,8 +1,8 @@
-import ru.secondproject.dao.executor.Executor;
-import ru.secondproject.model.User;
-import ru.secondproject.service.abstraction.user.UserService;
-import ru.secondproject.service.impl.user.UserServiceImpl;
-import ru.secondproject.util.SingleDBHelper;
+import ru.thirdproject.dao.executor.Executor;
+import ru.thirdproject.model.User;
+import ru.thirdproject.service.abstraction.user.UserService;
+import ru.thirdproject.service.impl.user.UserServiceImpl;
+import ru.thirdproject.util.SingleDBHelper;
 
 import java.sql.SQLException;
 
@@ -35,7 +35,7 @@ public class testclass {
      UserService userService = new UserServiceImpl();
      User user = userService.getUserById(1);
      userService.deleteUser(16);
-     userService.editUser(new User(19,"Bigban123", "passik112", "doomer"));
+     userService.editUser(new User("19","Bigban123", "passik112", "doomer"));
      userService.getAllUsers().stream().forEach(System.out::println);
 
 

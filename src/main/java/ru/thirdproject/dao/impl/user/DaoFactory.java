@@ -1,7 +1,7 @@
-package ru.secondproject.dao.impl.user;
+package ru.thirdproject.dao.impl.user;
 
-import ru.secondproject.dao.abstraction.user.UserDao;
-import ru.secondproject.util.PropertiesReader;
+import ru.thirdproject.dao.abstraction.user.UserDao;
+import ru.thirdproject.util.PropertiesReader;
 
 public class DaoFactory {
     public UserDao makeDao() {

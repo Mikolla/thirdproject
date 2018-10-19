@@ -1,6 +1,6 @@
-package ru.secondproject.service.abstraction.user;
+package ru.thirdproject.service.abstraction.user;
 
-import ru.secondproject.model.User;
+import ru.thirdproject.model.User;
 
 import java.util.List;
 

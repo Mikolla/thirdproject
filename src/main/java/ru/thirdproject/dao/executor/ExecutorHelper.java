@@ -1,4 +1,4 @@
-package ru.secondproject.dao.executor;
+package ru.thirdproject.dao.executor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

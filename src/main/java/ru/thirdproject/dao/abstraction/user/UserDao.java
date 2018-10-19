@@ -1,8 +1,8 @@
-package ru.secondproject.dao.abstraction.user;
+package ru.thirdproject.dao.abstraction.user;
 
 
 
-import ru.secondproject.model.User;
+import ru.thirdproject.model.User;
 
 import java.util.List;
 

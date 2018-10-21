@@ -14,6 +14,7 @@ public class SingleDBHelper {
 
     private SingleDBHelper() {
         instanceCount++;
+        System.out.println(" ---------------- INSTCOUNTER = " + instanceCount);
     }
 
     public static SingleDBHelper getInstance() {

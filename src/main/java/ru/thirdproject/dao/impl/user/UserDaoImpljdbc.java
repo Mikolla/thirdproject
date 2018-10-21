@@ -77,6 +77,11 @@ public class UserDaoImpljdbc implements UserDao {
     }
 
     @Override
+    public User getUserByLogin(String login) {
+        return null;
+    }
+
+    @Override
     public void editUser(User user) {
         String query = String.format("update users set name='%s', login='%s', password='%s', role='%s' where id='%s'",
                 user.getName(), user.getLogin(), user.getPassword(), user.getRole(), user.getId());

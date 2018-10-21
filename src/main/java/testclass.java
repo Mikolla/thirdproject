@@ -1,4 +1,6 @@
-import ru.thirdproject.dao.executor.Executor;
+
+
+
 import ru.thirdproject.model.User;
 import ru.thirdproject.service.abstraction.user.UserService;
 import ru.thirdproject.service.impl.user.UserServiceImpl;
@@ -8,36 +10,15 @@ import java.sql.SQLException;
 
 public class testclass {
     public static void main(String[] args) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
-        String query = String.format("SELECT * FROM users where id='%s'", 1);
-        Executor executor = new Executor(SingleDBHelper.getInstance().getConnection());
-      /*   ResultSet resultSet = executor.execQuery(query);
-        resultSet.wasNull();
 
-        boolean b = resultSet.next();
-        System.out.println(b);
-        System.out.println(resultSet.toString());
-        User user = new User(
-                resultSet.getLong(1),
-                resultSet.getString(2),
-                resultSet.getString(3),
-                resultSet.getString(4)
-        );
+        for (int i = 0; i < 5; i++) {
+            SingleDBHelper.getInstance();
+        }
+        System.out.println(SingleDBHelper.instanceCount);
 
-        System.out.println(resultSet.getString(1));
-        System.out.println(resultSet.getString(2));
-        System.out.println(resultSet.getString(3));
-        System.out.println(resultSet.getString(4));
-
-        UserDaoImpljdbc userDao = new UserDaoImpljdbc(DBHelper.getConnection());
-        User user = userDao.getUserById(1);
-        */
-
-     UserService userService = new UserServiceImpl();
-     User user = userService.getUserById(1);
-     userService.deleteUser(16);
-     userService.editUser(new User("19","Bigban123", "passik112", "doomer"));
-     userService.getAllUsers().stream().forEach(System.out::println);
-
+        UserService service =  new UserServiceImpl();
+        User user = service.getUserByLogin("log");
+        System.out.println(user.toString());
 
 
     }

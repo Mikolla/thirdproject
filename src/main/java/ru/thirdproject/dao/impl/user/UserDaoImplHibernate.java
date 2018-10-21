@@ -84,6 +84,24 @@ public class UserDaoImplHibernate implements UserDao {
         return users;
     }
 
+    @Override
+    public User getUserByLogin(String login) {
+        Session session = sessionFactory.openSession();
+        User user = null;
+        Transaction transaction = session.beginTransaction();
+        String jpql = "SELECT u FROM User u WHERE u.login = :paramLogin";
+        try {
+        Query query = session.createQuery(jpql);
+        query.setParameter("paramLogin", login);
+        user = (User) query.uniqueResult();
+            transaction.commit();
+
+        }  catch (Exception e) {
+            transaction.rollback();
+        }        session.close();
+        return user;
+    }
+
     public User getUserById(long id) {
             Session session = sessionFactory.openSession();
             User user = (User) session.get(User.class, id);

@@ -78,7 +78,21 @@ public class UserDaoImpljdbc implements UserDao {
 
     @Override
     public User getUserByLogin(String login) {
-        return null;
+        String query = String.format("SELECT * FROM users where login='%s'", login);
+        User user = executor.execQuery(query, new ExecutorHelper<User>() {
+            @Override
+            public User help(ResultSet resultSet) throws SQLException {
+                resultSet.next();
+                User user = new User(
+                        resultSet.getLong(1),
+                        resultSet.getString(3),
+                        resultSet.getString(2),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                return user;
+            }
+        });
+        return user;
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.io.IOException;
 
 @WebFilter("/admin/*")
 public class AdminFilter implements Filter {
-    private final UserService userService = new UserServiceImpl();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

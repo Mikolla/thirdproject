@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.getRequestDispatcher("/index.jsp").forward(request,response);
+       request.getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
         String userLogin = (request.getParameter("login"));
         String userPassword = (request.getParameter("password"));
 
-        if (  (userLogin == null || userPassword == null) || ( (userLogin == "" || userPassword == "")  )  ) {
+        if (  (userLogin == null || userPassword == null) || ( (userLogin.isEmpty() || userPassword.isEmpty())  )  ) {
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("empty username or password");
             response.sendRedirect("login");
